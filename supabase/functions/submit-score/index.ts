@@ -69,7 +69,7 @@ Deno.serve(async (req: Request) => {
     });
 
     if (error) {
-      return new Response(JSON.stringify({ error: error.message }), {
+      return new Response(JSON.stringify({ error: "Could not submit score" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

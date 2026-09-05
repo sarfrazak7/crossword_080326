@@ -1,0 +1,5 @@
+[functions.submit-score]
+verify_jwt = true
+
+[functions.increment-views]
+verify_jwt = false

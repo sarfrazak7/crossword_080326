@@ -60,4 +60,6 @@ BEGIN
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION increment_page_view() TO anon, authenticated;
+-- EXECUTE revoked from anon, authenticated, and PUBLIC: only the edge function
+-- (service role) should call this, preventing anonymous API spam of the counter.
+REVOKE EXECUTE ON FUNCTION increment_page_view() FROM PUBLIC, anon, authenticated;

@@ -83,4 +83,7 @@ BEGIN
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION submit_challenge_score(text, integer, integer, inet, text) TO anon, authenticated;
+-- EXECUTE revoked from anon, authenticated, and PUBLIC: only the edge function
+-- (service role) should call this, preventing forged score submissions directly
+-- through the database API. The edge function captures the real client IP.
+REVOKE EXECUTE ON FUNCTION submit_challenge_score(text, integer, integer, inet, text) FROM PUBLIC, anon, authenticated;

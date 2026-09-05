@@ -12,10 +12,20 @@ export default function ViewCounter() {
 
     (async () => {
       try {
-        const { data, error } = await supabase.rpc('increment_page_view');
-        if (!error && typeof data === 'number') {
-          setCount(data);
-          return;
+        const fnUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/increment-views`;
+        const res = await fetch(fnUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+        });
+        if (res.ok) {
+          const body = await res.json();
+          if (typeof body.count === 'number') {
+            setCount(body.count);
+            return;
+          }
         }
         const { data: row } = await supabase
           .from('page_views')
