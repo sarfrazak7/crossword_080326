@@ -38,7 +38,7 @@ export default function PlaceholderPage({ title, subtitle, img, accent, onNaviga
 
         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-medium text-white/40">
           <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: accent }} />
-          In development
+          Coming Soon
         </div>
 
         <button

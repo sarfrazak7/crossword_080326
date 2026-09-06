@@ -1,56 +1,55 @@
 import { useState } from 'react';
-import { Sparkles, ArrowRight, Wand2, Brain, Zap, Target, RefreshCw, Flame } from 'lucide-react';
+import { Boxes, ArrowRight, Flame, Trophy, Grid3x3, Clock, Layers, RotateCw } from 'lucide-react';
 import type { Route } from '@/lib/router';
-import { linkHref } from '@/lib/router';
 import ChallengeModal from '@/components/ChallengeModal';
 
 interface Props {
   onNavigate: (r: Route) => void;
 }
 
-const AI_CARDS = [
+const FEATURES = [
   {
-    icon: Brain,
-    title: 'Adaptive Difficulty',
-    desc: 'AI tunes puzzle complexity in real time, matching each player\u2019s skill so every round feels just right.',
+    icon: Boxes,
+    title: 'Six Faces, Six Puzzles',
+    desc: 'A rotating 3D cube where every face is its own word-search grid. Spin to switch puzzles.',
     accent: '#06b6d4',
   },
   {
-    icon: Wand2,
-    title: 'Procedural Levels',
-    desc: 'Endless fresh puzzles generated on the fly \u2014 no two playthroughs are ever the same.',
+    icon: Grid3x3,
+    title: '12×12 Letter Grids',
+    desc: 'Each face hides 10 themed words across eight directions. Find them all to clear the face.',
     accent: '#22c55e',
   },
   {
-    icon: Zap,
-    title: 'Smart Hints',
-    desc: 'Context-aware clues that nudge you forward without giving the answer away.',
+    icon: RotateCw,
+    title: 'Spin & Solve',
+    desc: 'Rotate the cube with buttons or your mouse. Every face you clear earns speed bonus points.',
     accent: '#f59e0b',
   },
   {
-    icon: Target,
-    title: 'Personalized Themes',
-    desc: 'AI picks categories and word sets based on what you love to play.',
+    icon: Layers,
+    title: 'Endless Puzzle Sets',
+    desc: 'Dozens of themed category sets — from Cosmos to Cipher to Safari. Never the same twice.',
     accent: '#ec4899',
   },
   {
-    icon: RefreshCw,
-    title: 'Endless Replay',
-    desc: 'Dynamic content rotation keeps the arcade alive long after you master the basics.',
-    accent: '#8b5cf6',
+    icon: Clock,
+    title: 'Beat the Clock',
+    desc: 'Each face has a time limit. Finish faster to earn bigger bonus points and climb the tiers.',
+    accent: '#3b82f6',
   },
   {
-    icon: Sparkles,
-    title: 'Natural Language Play',
-    desc: 'Describe a theme in plain words and watch AI build a whole puzzle around it.',
-    accent: '#3b82f6',
+    icon: Trophy,
+    title: 'Challenge Friends',
+    desc: 'Generate a share link, submit your score, and compete on the category leaderboard.',
+    accent: '#8b5cf6',
   },
 ];
 
 const GAMES = [
   {
     route: 'crossword' as Route,
-    name: 'Crossword Puzzle',
+    name: 'Crossword 3D',
     desc: 'A 3D cube with six faces of word-search puzzles. Spin, find, solve.',
     tag: 'PLAY NOW',
     img: 'https://images.pexels.com/photos/12585534/pexels-photo-12585534.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -82,16 +81,16 @@ export default function LandingPage({ onNavigate }: Props) {
         {/* HERO */}
         <section className="mx-auto max-w-3xl pt-12 text-center sm:pt-20">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 backdrop-blur-sm">
-            <Sparkles className="h-3.5 w-3.5 text-cyan-300" />
-            <span className="text-[11px] font-medium tracking-widest text-white/60">AI-POWERED ARCADE</span>
+            <Boxes className="h-3.5 w-3.5 text-cyan-300" />
+            <span className="text-[11px] font-medium tracking-widest text-white/60">3D WORD SEARCH ARCADE</span>
           </div>
 
           <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-6xl sm:leading-tight">
-            Games that <span className="bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent">think</span> back.
+            Six faces. <span className="bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent">Sixty words.</span> One cube.
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-base text-white/55 sm:text-lg">
-            A collection of puzzle and reflex games where artificial intelligence shapes
-            every level, every hint, and every challenge.
+            Spin a 3D cube and hunt for hidden words across all six faces. Each face is a
+            themed word-search puzzle — race the clock, earn bonus points, challenge a friend.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -99,7 +98,7 @@ export default function LandingPage({ onNavigate }: Props) {
               onClick={() => onNavigate('crossword')}
               className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 px-6 py-3 text-sm font-bold text-black transition hover:scale-[1.03] hover:shadow-lg hover:shadow-cyan-500/30"
             >
-              Play Crossword
+              Play Now
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
             <button
@@ -111,16 +110,16 @@ export default function LandingPage({ onNavigate }: Props) {
           </div>
         </section>
 
-        {/* FLOATING AI CARDS */}
+        {/* FEATURE CARDS */}
         <section className="mt-24 sm:mt-32">
           <div className="mb-10 text-center">
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">What AI can do for games</h2>
-            <p className="mt-2 text-sm text-white/45">Six ways intelligence powers the arcade</p>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">How it works</h2>
+            <p className="mt-2 text-sm text-white/45">Everything the cube has to offer</p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {AI_CARDS.map((card, i) => (
-              <FloatingCard key={card.title} {...card} index={i} />
+            {FEATURES.map((card, i) => (
+              <FeatureCard key={card.title} {...card} index={i} />
             ))}
           </div>
         </section>
@@ -165,7 +164,6 @@ export default function LandingPage({ onNavigate }: Props) {
                 </button>
               );
 
-              // Attach the Challenge flyer directly under the crossword card
               if (g.route !== 'crossword') return card;
 
               return (
@@ -181,7 +179,7 @@ export default function LandingPage({ onNavigate }: Props) {
         {/* CTA */}
         <section className="mx-auto mt-24 max-w-2xl text-center sm:mt-32">
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/5 to-emerald-500/5 p-10 backdrop-blur-sm">
-            <Sparkles className="mx-auto mb-4 h-8 w-8 text-cyan-300" />
+            <Boxes className="mx-auto mb-4 h-8 w-8 text-cyan-300" />
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Got an idea for a game?</h2>
             <p className="mt-3 text-sm text-white/50">
               Tell us what you want to play next. The best ideas come from the community.
@@ -206,7 +204,7 @@ export default function LandingPage({ onNavigate }: Props) {
   );
 }
 
-function FloatingCard({
+function FeatureCard({
   icon: Icon,
   title,
   desc,
@@ -221,7 +219,7 @@ function FloatingCard({
 }) {
   return (
     <div
-      className={`ai-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-white/20`}
+      className="ai-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition hover:border-white/20"
       style={{ animationDelay: `${index * 0.4}s` }}
     >
       <div

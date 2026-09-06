@@ -156,7 +156,7 @@ export default function CrosswordPage() {
             <Boxes className="h-5 w-5 text-cyan-300" />
           </div>
           <div>
-            <h1 className="text-base font-bold tracking-[0.2em]">CROSSWORDS PRO</h1>
+            <h1 className="text-base font-bold tracking-[0.2em]">CROSSWORDS 3D</h1>
             <p className="text-[10px] tracking-widest text-white/40">SIX FACES · SIX PUZZLES</p>
           </div>
         </div>
